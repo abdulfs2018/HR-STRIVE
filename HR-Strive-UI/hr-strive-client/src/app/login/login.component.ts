@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
 
   ngOnInit(): void {
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
 
     if (this.profileForm.value.email == "kieronpeters1@gmail.com" && this.profileForm.value.password == "12345678tT@") {
       console.warn("passed validation");
+      this.router.navigate(['logged-in']);
     } else {
       console.warn("failed validation");
     }
