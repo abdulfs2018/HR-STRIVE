@@ -1,16 +1,11 @@
-<h1>Welcome to STRIVE</h1>
-
-<h3>Login</h3>
+<h1 class="text-center text-secondary">Welcome to STRIVE</h1>
 
 
-<div class="alert alert-primary" role="alert">
-    This is a primary alert—check it out!
-  </div>
+<div id="login-container" class="border border-primary bg-secondary text-white">
+  <h3>Login</h3>
 
 
-  
-
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
     <label for="email">Username / Email: </label>
     <input id="email" type="text" formControlName="email">
@@ -18,11 +13,10 @@
     <label for="password">password: </label>
     <input id="password" type="text" formControlName="password">
 
-
-    <p>Complete the form to enable button.</p>
-    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    <button type="submit" id="submit" class="btn-primary" [disabled]="!profileForm.valid">Submit</button>
   
-</form>
+  </form>
 
+</div>
 
 <p>Form Status: {{ profileForm.status }}</p>
