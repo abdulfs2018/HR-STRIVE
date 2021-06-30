@@ -4,7 +4,22 @@
 }
 
 #email, #password {
-    display:block;
+    margin-top: 5%;
     margin-bottom:5%;
 }
 
+.bi {
+    display:block;
+}
+
+label {
+    margin-bottom: 1%;
+    text-align: center;
+    width: 100%;
+}
+
+#login-title {
+    position:relative;
+    top:-5%;
+    left:-5%;
+}

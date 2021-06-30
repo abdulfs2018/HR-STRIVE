@@ -2,18 +2,40 @@
 
 
 <div id="login-container" class="border border-primary bg-secondary text-white">
-  <h3>Login</h3>
+  <h3 id="login-title">Login</h3>
 
 
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
-    <label for="email">Username / Email: </label>
-    <input id="email" type="text" formControlName="email">
-  
-    <label for="password">password: </label>
-    <input id="password" type="text" formControlName="password">
+    <div class="container">
+      <div class="row">
 
-    <button type="submit" id="submit" class="btn-primary" [disabled]="!profileForm.valid">Submit</button>
+        <div class="col-3">
+          <label for="email"><i class="bi bi-person-check"></i>Username / Email: </label>
+          
+        </div>
+       
+        <div class="col-3">
+          <input id="email" type="text" formControlName="email">
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-3">
+          <label for="password"><i class="bi bi-key"></i>password: </label>
+        </div>
+       
+        <div class="col-3">
+          <input id="password" type="text" formControlName="password">
+        </div>
+
+      </div>
+
+    </div>
+    
+    
+    <button type="submit" id="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Login</button>
   
   </form>
 
