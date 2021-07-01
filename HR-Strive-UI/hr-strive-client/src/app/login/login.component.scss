@@ -1,25 +1,72 @@
-#login-container {
+.container {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#primary-container {
+    padding-top: 20px;
     margin: 5%;
-    padding: 5%;
+    background-color:#e1e2e3;
 }
 
-#email, #password {
-    margin-top: 5%;
-    margin-bottom:5%;
+#login-container {
+    background-color:#e1e2e3;
 }
 
-.bi {
+label .bi {
     display:block;
+    font-size: 2rem;
 }
 
 label {
     margin-bottom: 1%;
     text-align: center;
-    width: 100%;
 }
 
 #login-title {
     position:relative;
-    top:-5%;
-    left:-5%;
+    top:-20px;
+    left:10px;
+    width:fit-content;
+    background-color:#e1e2e3;
+}
+
+@media only screen and (max-width: 991px) {
+    #email, #password {
+        margin-top: 5%;
+        margin-bottom:5%;
+        width:100%;
+    }
+
+    label {
+        width:100%;
+    }
+
+    .col-4 a {
+        margin-left: 10px;
+    }
+    
+    form {
+        margin-bottom: 5%;
+    }
+    
+}
+
+@media only screen and (min-width: 992px) {
+    #email, #password {
+        width:430px;
+    }
+
+    label {
+        width:400px;
+    }
+
+    .col-4 {
+        width:303px;
+    }
+
+    .col-8 {
+        width:607px;
+    }
+
 }
