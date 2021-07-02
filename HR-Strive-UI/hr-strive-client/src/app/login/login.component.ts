@@ -14,17 +14,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    /*$(function(){
-      var windowWidth : number | undefined = $(window).width();
-
-      if (windowWidth !== undefined && windowWidth > 1024) {
-        $('div div .col-4').removeClass('col-4');
-        $('div div .col-8').removeClass('col-8');
-        $('.row').removeClass('row');
-      }
-      
-    });*/
-
   }
 
   // regex is for a Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
