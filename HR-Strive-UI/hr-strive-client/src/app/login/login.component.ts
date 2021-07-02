@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['logged-in']);
     } else {
       console.warn("failed validation");
+
+      // implement logic for showing an alert with failed login -- not a form error as inputs are controlled by a disabled login button
+      // what we want to check is the actual user exists, and if it does not, we show error we have invalid username and password input
     }
   }
 
