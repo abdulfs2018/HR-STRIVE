@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
+import { FormGroup, FormControl, Validators, EmailValidator, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,11 +16,18 @@ export class LoginComponent implements OnInit {
 
   }
 
-  // regex is for a Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+  validateEmail(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      // execute check on db here (return null for passing, return some value as true to check in ngif in html to reveal a div with alert email exists already)
+      return  {alreadyExist: 'true'};
+    };
+  }
+
+  // TODO: regex is for a Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
   passwordRegex : string = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
 
   profileForm : FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email, this.validateEmail()]),
     password: new FormControl('', [Validators.required, Validators.pattern(this.passwordRegex)]),
   });
 
@@ -33,9 +40,6 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['logged-in']);
     } else {
       console.warn("failed validation");
-
-      // implement logic for showing an alert with failed login -- not a form error as inputs are controlled by a disabled login button
-      // what we want to check is the actual user exists, and if it does not, we show error we have invalid username and password input
     }
   }
 

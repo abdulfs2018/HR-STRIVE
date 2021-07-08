@@ -6,14 +6,23 @@
     <h3 id="login-title">Login</h3>
   
   
+    
+
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   
       <div class="container">
         <div class="row">
-  
           <div class="col-4">
-            <label for="email"><i class="bi bi-person-check"></i>Username / Email: </label>
-            
+
+          </div>
+          <div class=" col-8 alert alert-danger" id="warningEmail" role="alert" *ngIf="this.profileForm['controls']
+            .email.hasError('alreadyExist') && this.profileForm['controls'].email.touched">
+            *this email already exists in our database
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <label for="email"><i class="bi bi-person-check"></i>Username / Email: </label> 
           </div>
          
           <div class="col-8">
