@@ -15,9 +15,7 @@
           <div class="col-4">
 
           </div>
-          <div class=" col-8 alert alert-danger" id="warningEmail" role="alert" *ngIf="(this.profileForm['controls']
-            .email.hasError('invalidEmail') || this.profileForm['controls']
-            .password.hasError('invalidPass')) && this.profileForm['controls'].email.touched">
+          <div class=" col-8 alert alert-danger" id="warningEmail" role="alert" *ngIf="invalid">
             invalid username or password
           </div>
         </div>
@@ -68,7 +66,6 @@
           </div>
   
         </div>
-  
   
   
       </div>

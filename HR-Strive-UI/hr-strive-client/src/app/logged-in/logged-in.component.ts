@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-logged-in',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoggedInComponent implements OnInit {
 
-  constructor() { }
+  example: string;
+
+  constructor(private router: Router) { 
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as {example: string};
+    this.example = state.example;
+  }
 
   ngOnInit(): void {
   }
