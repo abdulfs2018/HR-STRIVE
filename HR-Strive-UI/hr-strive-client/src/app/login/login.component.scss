@@ -39,40 +39,50 @@ form {
     margin-bottom: 20px;
 }
 
-@media only screen and (max-width: 1134px) {
-    #email, #password {
-        margin-top: 5%;
-        margin-bottom:5%;
-        width:100%;
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+    #primary-container {
+        width:426px;
+        margin:auto;
     }
 
-    label {
-        width:100%;
+    input {
+        width:190px;
     }
-
-    .col-4 a {
-        margin-left: 10px;
-    }
-    
-    
     
 }
 
-@media only screen and (min-width: 1135px) {
-    #email, #password, #warningEmail {
-        width:430px;
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    #primary-container {
+        width:769px;
+        margin:auto;
     }
 
-    label {
-        width:400px;
+    input {
+        width:455px;
+    }
+    
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    #primary-container {
+        width:1025px;
+        margin:auto;
     }
 
-    .col-4 {
-        width:303px;
+    input {
+        width:609px;
+    }
+    
+}
+
+@media only screen and (min-width: 1441px) {
+    #primary-container {
+        width:1441px;
+        margin:auto;
     }
 
-    .col-8 {
-        width:607px;
+    input {
+        width:858px;
     }
-
+    
 }
