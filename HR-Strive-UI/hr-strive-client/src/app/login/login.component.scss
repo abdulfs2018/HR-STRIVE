@@ -1,0 +1,88 @@
+.container {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#primary-container {
+    padding-top: 20px;
+    margin: 5%;
+    background-color:#e1e2e3;
+}
+
+#login-container {
+    background-color:#e1e2e3;
+}
+
+label .bi {
+    display:block;
+    font-size: 2rem;
+}
+
+label {
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+#login-title {
+    position:relative;
+    top:-20px;
+    left:10px;
+    width:fit-content;
+    background-color:#e1e2e3;
+}
+
+form {
+    margin: 5%;
+}
+
+#submit-row {
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+    #primary-container {
+        width:426px;
+        margin:auto;
+    }
+
+    input {
+        width:190px;
+    }
+    
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    #primary-container {
+        width:769px;
+        margin:auto;
+    }
+
+    input {
+        width:455px;
+    }
+    
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    #primary-container {
+        width:1025px;
+        margin:auto;
+    }
+
+    input {
+        width:609px;
+    }
+    
+}
+
+@media only screen and (min-width: 1441px) {
+    #primary-container {
+        width:1441px;
+        margin:auto;
+    }
+
+    input {
+        width:858px;
+    }
+    
+}
