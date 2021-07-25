@@ -12,22 +12,27 @@
     width: 100%;
     margin-bottom: 10px;
   }
+
   .bi-person-check,
-  .bi-key {
+  .bi-key,
+  .bi-patch-question {
     padding: 10px;
     color: black;
     min-width: 50px;
     text-align: center;
   }
+  
   .form-control {
     width: 100%;
     padding-left: 45px;
     padding-bottom: 10px;
     text-align: left;
   }
+
   .login-btn-block {
     width: 75%;
   }
+
   .form-border {
     border: 3px solid black;
     border-radius: 10px;
@@ -39,6 +44,7 @@
       display:block;
     }
   }
+
   ::placeholder {
     color: black;
   }
@@ -74,4 +80,17 @@
     margin-top:10px;
   }
 
-  
+  #welcome-title {
+    font-size: xxx-large;
+    color: #939ba2 !important;
+  }
+
+  #button-container {
+    text-align: right;
+  }
+
+  @media only screen and (max-width: 575px) {
+    a {
+      font-size: smaller;
+    }    
+  }

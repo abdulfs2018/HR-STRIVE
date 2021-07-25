@@ -1,4 +1,4 @@
-<h1 class="text-center text-secondary">Welcome to STRIVE</h1>
+<h1 id="welcome-title" class="text-center">Welcome to STRIVE</h1>
 
 <div class="login-form">
   <div class="container">
@@ -37,12 +37,15 @@
                 placeholder="Enter password"
               />
             </div>
-            <button class="btn btn-lg btn-danger btn-block login-button" type="submit" id="submit" [disabled]="!profileForm.valid">
+            <div id="button-container">
+              <button class="btn btn-lg btn-danger btn-block login-button border border-primary" type="submit" id="submit" [disabled]="!profileForm.valid">
               Login
             </button>
+            </div>
+            
           </form>
 
-          <a href="./"><i class="bi bi-key"></i>Forgot your password?</a>
+          <a href="./"><i class="bi bi-patch-question"></i>Forgot your password?</a>
           <br>
           <a href="./">Not a member? No problem! Click here to sign up</a>
 
