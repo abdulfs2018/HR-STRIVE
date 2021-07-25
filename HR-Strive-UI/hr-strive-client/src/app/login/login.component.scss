@@ -21,7 +21,7 @@
     min-width: 50px;
     text-align: center;
   }
-  
+
   .form-control {
     width: 100%;
     padding-left: 45px;
@@ -87,6 +87,11 @@
 
   #button-container {
     text-align: right;
+  }
+
+  #login-title {
+    margin-top: -12%;
+    margin-left: -20%;
   }
 
   @media only screen and (max-width: 575px) {
