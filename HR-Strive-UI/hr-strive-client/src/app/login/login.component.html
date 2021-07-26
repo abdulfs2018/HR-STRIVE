@@ -1,81 +1,59 @@
-<h1 class="text-center text-secondary">Welcome to STRIVE</h1>
+<h1 id="welcome-title" class="text-center">Welcome to STRIVE</h1>
 
-<div id="primary-container">
-
-  <div id="login-container" class="border border-dark border-5 text-black">
-    <h3 id="login-title">Login</h3>
-  
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  
-      <div class="container">
-        <div class="row">
-          <div class="col-4">
-
-          </div>
-          <div class=" col-8 alert alert-danger" id="warningEmail" role="alert" *ngIf="invalid">
-            invalid username or password
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-4">
-            <label for="email"><i class="bi bi-person-check"></i>Username / Email: </label> 
-          </div>
-         
-          <div class="col-8">
-            <input id="email" type="text" formControlName="email">
-          </div>
-  
-        </div>
-  
-        <div class="row">
-          <div class="col-4">
-            <label for="password"><i class="bi bi-key"></i>password: </label>
-          </div>
-         
-          <div class="col-8">
-            <input id="password" type="text" formControlName="password">
-          </div>
-  
-        </div>
-  
-        <div id="submit-row" class="row">
-          <div class="col-4">
-  
-          </div>
-  
-          <div class="col-4">
-            <i class="bi bi-patch-question"></i><a href="#" class="link-info">Forgot your Password?</a>
-          </div>
-         
-          <div class="col-4">
-            <button type="submit" id="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Login</button>
-          </div>
-  
-        </div>
-  
-        <div id="signup-row" class="row">
-          <div class="col-4">
-  
-          </div>
-         
-          <div class="col-8">
-            <a href="#" class="link-info">Not a member? No Problem! Click here to sign up!</a>
-          </div>
-  
-        </div>
-  
-  
-      </div>
-      
-      
-      
+<div class="login-form">
+  <div class="container">
     
-    </form>
-  
+    <!-- form box -->
+    <div class="form-border">
+      <h2 id="login-title" class="mb-5">Login</h2>
+      <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <div class="input-icons">
+                <i class="bi bi-person-check"></i>
+                <input
+                  type="email"
+                  name="email"
+                  formControlName="email"
+                  class="form-control"
+                  id="email"
+                  aria-describedby="nameHelp"
+                  placeholder="Enter email address"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <i class="bi bi-key"></i>
+              <input
+                type="password"
+                name="password"
+                formControlName="password"
+                class="form-control"
+                id="password"
+                aria-describedby="emailHelp"
+                placeholder="Enter password"
+              />
+            </div>
+            <div id="button-container">
+              <button class="btn btn-lg btn-danger btn-block login-button border border-primary" type="submit" id="submit" [disabled]="!profileForm.valid">
+              Login
+            </button>
+            </div>
+            
+          </form>
+
+          <a href="./"><i class="bi bi-patch-question"></i>Forgot your password?</a>
+          <br>
+          <a href="./">Not a member? No problem! Click here to sign up</a>
+
+        </div>
+      </div>
+    </div>
+    <!-- end of form box-->
   </div>
-
-
 </div>
-
 
 <p>Form Status: {{ profileForm.status }}</p>
