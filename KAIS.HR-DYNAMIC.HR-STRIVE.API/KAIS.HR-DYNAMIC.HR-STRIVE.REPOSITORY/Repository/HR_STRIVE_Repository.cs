@@ -8,3 +8,4 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY.Repository
     {
     }
 }
+  

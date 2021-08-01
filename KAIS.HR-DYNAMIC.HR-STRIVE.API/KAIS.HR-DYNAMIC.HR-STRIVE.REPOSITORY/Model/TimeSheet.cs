@@ -2,5 +2,6 @@
 {
     public class TimeSheet
     {
+        public int Id { get; set; }
     }
 }

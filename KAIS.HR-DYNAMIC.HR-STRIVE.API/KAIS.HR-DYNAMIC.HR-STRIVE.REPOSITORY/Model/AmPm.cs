@@ -1,7 +1,9 @@
 ﻿namespace KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY.Model
 {
-    public class Metricz
+    public enum AmPm
     {
-        public int Id { get; set; }
+        AM,
+        PM,
+        NO
     }
 }

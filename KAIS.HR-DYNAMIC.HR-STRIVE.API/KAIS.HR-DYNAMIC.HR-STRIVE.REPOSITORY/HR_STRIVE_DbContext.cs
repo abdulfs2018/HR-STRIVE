@@ -8,7 +8,7 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY
 {
     public class HR_STRIVE_DbContext: DbContext
     {
-        public HR_STRIVE_DbContext(DbContextOptions options)
+        public HR_STRIVE_DbContext(DbContextOptions<HR_STRIVE_DbContext> options)
             :base(options)
         {
 
@@ -21,7 +21,5 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY
         public DbSet<TimeSheet> TimeSheets { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<UserAccount> UserAccounts { get; set; }
-        
-
     }
 }
