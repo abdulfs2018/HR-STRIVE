@@ -13,7 +13,7 @@ export class LoggedInComponent implements OnInit {
   constructor(private router: Router) { 
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {example: string};
-    this.example = state.example;
+    this.example = state?.example;
   }
 
   ngOnInit(): void {
