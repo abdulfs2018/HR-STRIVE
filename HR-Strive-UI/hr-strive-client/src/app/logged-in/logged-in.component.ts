@@ -17,6 +17,15 @@ export class LoggedInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    $(document).ready(function () {
+
+      $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+      });
+  
+    });
+
   }
 
 }
