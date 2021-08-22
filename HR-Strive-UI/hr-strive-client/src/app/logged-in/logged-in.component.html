@@ -1,102 +1,27 @@
-<!-- shows content from last page passed through, does not show it navigated to directly-->
+<!-- shows content from last page passed through, does not show it if page is navigated to directly-->
 <p>{{example}}</p>
 
 <div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
-        </div>
-
-        <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Portfolio</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </nav>
-    <!-- Main Content -->
+    <app-sidebar (pageEvent)="pageEvent($event)"></app-sidebar>
     <div id="content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-    
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
                     <i class="fas fa-align-left"></i>
                     <span>Toggle Sidebar</span>
                 </button>
-    
             </div>
-
         </nav>
 
         <div class="container border border-dark border-3" id="main-content">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1>HR STRIVE</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 border border-dark border-2 col-top">
-                    <h1 class="text-center">Title</h1>
-                    <p>Text</p>
-                </div>
-                <div class="col-2 col-top">
-                    
-                </div>
-                <div class="col-5 border border-dark border-2 col-top">
-                    <h1 class="text-center">Title</h1>
-                    <p>Text</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 border border-dark border-2">
-                    <h1 class="text-center">Title</h1>
-                    <p>Text</p>
-                <div class="col-2">
-                    
-                </div>
-                <div class="col-5 border border-dark border-2">
-                    <h1 class="text-center">Title</h1>
-                    <p>Text</p>
-                </div>
-            </div>
+            <h1 class="text-center" id="app-title">HR STRIVE</h1>
+            <app-dashboard *ngIf="tabIndex === 0" [userType]="userType"></app-dashboard>
+            <app-holiday-calendar *ngIf="tabIndex === 1" [userType]="userType"></app-holiday-calendar>
+            <app-timesheet *ngIf="tabIndex === 2" [userType]="userType"></app-timesheet>
+            <app-metricz *ngIf="tabIndex === 3" [userType]="userType"></app-metricz>
+            <app-holiday-form *ngIf="tabIndex === 4" [userType]="userType"></app-holiday-form>
+            <app-book-holiday *ngIf="tabIndex === 5" [userType]="userType"></app-book-holiday>
+            <app-users *ngIf="tabIndex === 6" [userType]="userType"></app-users>
         </div>
-
-
     </div>
-
 </div>

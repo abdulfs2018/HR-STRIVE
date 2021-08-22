@@ -28,4 +28,14 @@ export class LoggedInComponent implements OnInit {
 
   }
 
+  // tracks which component to load and userType will come from logged in API call object in the future
+  // this userType is passed to each component page child to render relevant information to the user based on role
+  // userRole: standard, admin or topLevelAdmin
+  tabIndex: number = 0;
+  userType: string = 'topLevelAdmin';
+
+  pageEvent(id: number): void {
+    this.tabIndex = id;
+  }
+
 }
