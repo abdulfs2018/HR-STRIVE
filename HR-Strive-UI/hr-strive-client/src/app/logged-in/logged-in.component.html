@@ -2,7 +2,7 @@
 <p>{{example}}</p>
 
 <div class="wrapper">
-    <app-sidebar (pageEvent)="pageEvent($event)"></app-sidebar>
+    <ng-container #sidebarContainer class="sidebar-container"></ng-container>
     <div id="content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -15,13 +15,8 @@
 
         <div class="container border border-dark border-3" id="main-content">
             <h1 class="text-center" id="app-title">HR STRIVE</h1>
-            <app-dashboard *ngIf="tabIndex === 0" [userType]="userType"></app-dashboard>
-            <app-holiday-calendar *ngIf="tabIndex === 1" [userType]="userType"></app-holiday-calendar>
-            <app-timesheet *ngIf="tabIndex === 2" [userType]="userType"></app-timesheet>
-            <app-metricz *ngIf="tabIndex === 3" [userType]="userType"></app-metricz>
-            <app-holiday-form *ngIf="tabIndex === 4" [userType]="userType"></app-holiday-form>
-            <app-book-holiday *ngIf="tabIndex === 5" [userType]="userType"></app-book-holiday>
-            <app-users *ngIf="tabIndex === 6" [userType]="userType"></app-users>
+            <ng-container #componentContainer class="component-container"></ng-container>
+
         </div>
     </div>
 </div>

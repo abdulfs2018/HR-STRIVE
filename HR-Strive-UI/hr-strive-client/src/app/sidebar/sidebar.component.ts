@@ -7,14 +7,14 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  @Output() pageEvent = new EventEmitter<number>();
+  @Output() pageEvent = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  loadPage(id: number) {
-    this.pageEvent.emit(id);
+  loadPage(pageName: string) {
+    this.pageEvent.emit(pageName);
     return false;
   }
 
