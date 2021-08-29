@@ -25,17 +25,8 @@ export class LoggedInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.loadComponent('Sidebar');
-    //this.loadComponent('Dashboard');
-
-    $(document).ready(function () {
-
-      $('#sidebarCollapse').on('click', function () {
-          $('#sidebar').toggleClass('active');
-      });
-  
-    });
+    this.loadComponent('Dashboard');
   }
 
   async loadComponent(componentName: string): Promise<void> {

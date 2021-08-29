@@ -8,6 +8,8 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   @Output() pageEvent = new EventEmitter<string>();
+  hideSidebar: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -16,6 +18,10 @@ export class SidebarComponent implements OnInit {
   loadPage(pageName: string) {
     this.pageEvent.emit(pageName);
     return false;
+  }
+
+  toggleSidebar(): void {
+    this.hideSidebar = !this.hideSidebar;
   }
 
 }

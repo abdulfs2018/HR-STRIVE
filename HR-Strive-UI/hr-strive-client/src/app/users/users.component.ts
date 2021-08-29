@@ -7,11 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
+
+  @Input() userType: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  @Input() userType: string = '';
 
 }
