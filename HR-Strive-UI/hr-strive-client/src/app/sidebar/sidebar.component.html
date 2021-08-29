@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <button type="button" id="sidebarCollapse" class="btn btn-info" (click)="toggleSidebar()">
+            <i class="fas fa-align-left"></i>
+            <span>Toggle Sidebar</span>
+        </button>
+    </div>
+</nav>
+<nav id="sidebar" [class.active]="hideSidebar">
+    <div class="sidebar-header">
+        <h3>Bootstrap Sidebar</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <p>Dummy Heading</p>
+        
+        <li>
+            <a href="#" (click)="loadPage('Dashboard')">Dashboard</a>
+        </li>
+        <li>
+            <a href="#" (click)="loadPage('Holiday Calendar')">Holiday Calendar</a>
+        </li>
+        <li>
+            <a href="#" (click)="loadPage('Timesheet')">Timesheet</a>
+        </li>
+        <li>
+            <a href="#" (click)="loadPage('Metricz')">Metricz</a>
+        </li>
+        <li>
+            <a href="#" (click)="loadPage('Holiday Form')">Holiday Form</a>
+        </li>
+        <li>
+            <a href="#" (click)="loadPage('Book Holiday')">Book Holiday</a>
+        </li>
+        <li>
+            <a href="#" (click)="loadPage('Users')">Users</a>
+        </li>
+    </ul>
+</nav>
