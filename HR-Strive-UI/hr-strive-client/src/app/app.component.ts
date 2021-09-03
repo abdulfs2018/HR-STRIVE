@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'hr-strive-client';
+    /** Returns current year, e.g. 2019, 2020. */
+    readonly currentYear: number = new Date().getFullYear();
 }
