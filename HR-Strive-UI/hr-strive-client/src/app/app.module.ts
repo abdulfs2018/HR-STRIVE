@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NxLinkModule } from '@aposin/ng-aquila/link';
 import { NxHeaderModule } from '@aposin/ng-aquila/header';
 
-//local imports
+//app imports
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
