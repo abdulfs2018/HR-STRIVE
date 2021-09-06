@@ -48,7 +48,7 @@ export class SidebarComponent {
     {
       icon: faClock,
       label: 'Timesheet',
-      url: '/',
+      url: '/timesheet',
     },
     {
       icon: faUserTie,

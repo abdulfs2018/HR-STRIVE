@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'metricz',
     loadChildren: () => import('./modules/metricz/metricz.module').then(m => m.MetriczModule)
+  },
+  {
+    path: 'timesheet',
+    loadChildren: () => import('./modules/timesheet/timesheet.module').then(m => m.TimesheetModule)
   }
 ];
 

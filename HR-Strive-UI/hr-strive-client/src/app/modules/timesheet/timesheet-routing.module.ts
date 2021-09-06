@@ -1,7 +1,17 @@
+//angular imports
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+//app imports
+import { TimesheetComponent } from './timesheet/timesheet.component';
+
+
+const routes: Routes = [
+  {
+    path: '',
+    component: TimesheetComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
