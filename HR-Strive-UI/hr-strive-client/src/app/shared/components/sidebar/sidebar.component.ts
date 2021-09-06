@@ -1,7 +1,10 @@
-import { NavbarItem } from './../../../core/models/navbar-item';
-
+//angular imports
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+//app imports
+import { NavbarItem } from './../../../core/models/navbar-item';
+
+//libs imports
 import {
   faUserTie,
   faTasks,
@@ -20,7 +23,7 @@ import {
 })
 export class SidebarComponent {
 
-  //TODO: use real routes here
+
   readonly navItems: NavbarItem[] = [
     {
       icon: faTasks,
@@ -30,12 +33,12 @@ export class SidebarComponent {
     {
       icon: faCalendarAlt,
       label: 'Book Holiday',
-      url: '/',
+      url: '/holiday/book-holiday',
     },
     {
       icon: faPlane,
       label: 'Holiday Form',
-      url: '/',
+      url: '/holiday/holiday-form',
     },
     {
       icon: faCalculator,
