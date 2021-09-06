@@ -1,0 +1,14 @@
+<nx-sidebar class="my-sidebar" resizeable #sidebar>
+    <button nxAction
+        *ngFor="let item of navItems" 
+        routerLink="{{item.url}}"
+        routerLinkActive="is-selected" 
+        type="button">
+            <fa-icon [icon]="item.icon"></fa-icon>
+            {{item.label}}
+    </button>
+
+    <nx-sidebar-footer>
+        <button nxSidebarToggle aria-label="toggle sidebar" type="button"></button>
+    </nx-sidebar-footer>
+</nx-sidebar>

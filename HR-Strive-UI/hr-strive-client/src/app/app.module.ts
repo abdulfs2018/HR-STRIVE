@@ -5,13 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 //libs imports
 import { NxLinkModule } from '@aposin/ng-aquila/link';
-import { NxFooterModule } from '@aposin/ng-aquila/footer';
 import { NxHeaderModule } from '@aposin/ng-aquila/header';
 
 //local imports
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -22,9 +23,9 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    NxFooterModule,
     NxHeaderModule,
-    NxLinkModule
+    NxLinkModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

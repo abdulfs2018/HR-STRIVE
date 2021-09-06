@@ -5,20 +5,13 @@
         </nx-link>
     </nx-header-brand>
 </header>
-<router-outlet></router-outlet>
-<footer nx-footer>
-    <nx-footer-copyright>
-        &copy; HR Strive {{ currentYear }}
-    </nx-footer-copyright>
-    <nx-footer-navigation>
-        <nx-footer-link>
-            <a routerLink="./">Imprint</a>
-        </nx-footer-link>
-        <nx-footer-link>
-            <a routerLink="./">Privacy Policy</a>
-        </nx-footer-link>
-        <nx-footer-link>
-            <a routerLink="./">Terms of Use</a>
-        </nx-footer-link>
-    </nx-footer-navigation>
-</footer>
+
+<div class="container">
+    <aside>
+        <app-sidebar></app-sidebar>
+    </aside>
+
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+</div>
