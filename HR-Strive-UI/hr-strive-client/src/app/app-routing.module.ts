@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  {
+    path: 'metricz',
+    loadChildren: () => import('./modules/metricz/metricz.module').then(m => m.MetriczModule)
   }
 ];
 

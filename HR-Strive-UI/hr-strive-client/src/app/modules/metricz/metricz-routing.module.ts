@@ -1,7 +1,17 @@
+//angular impports
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+//app imports
+import { MetriczComponent } from './metricz/metricz.component';
+
+
+const routes: Routes = [
+  {
+    path: '',
+    component: MetriczComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

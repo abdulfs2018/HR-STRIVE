@@ -43,7 +43,7 @@ export class SidebarComponent {
     {
       icon: faCalculator,
       label: 'Metricz',
-      url: '/',
+      url: '/metricz',
     },
     {
       icon: faClock,
