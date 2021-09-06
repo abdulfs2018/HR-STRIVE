@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { HolidayRoutingModule } from './holiday-routing.module';
 import { BookHolidayComponent } from './book-holiday/book-holiday.component';
 import { HolidayComponent } from './holiday/holiday.component';
+import { HolidayFormComponent } from './holiday-form/holiday-form.component';
 
 
 @NgModule({
   declarations: [
     BookHolidayComponent,
-    HolidayComponent
+    HolidayComponent,
+    HolidayFormComponent
   ],
   imports: [
     CommonModule,
