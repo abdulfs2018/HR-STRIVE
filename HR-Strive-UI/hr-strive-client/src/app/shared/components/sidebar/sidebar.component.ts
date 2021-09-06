@@ -28,7 +28,7 @@ export class SidebarComponent {
     {
       icon: faTasks,
       label: 'Dashboard',
-      url: '/',
+      url: '/dashboard',
     },
     {
       icon: faCalendarAlt,
