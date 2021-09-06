@@ -53,7 +53,7 @@ export class SidebarComponent {
     {
       icon: faUserTie,
       label: 'Users',
-      url: '/',
+      url: '/users',
     },
   ];
 }

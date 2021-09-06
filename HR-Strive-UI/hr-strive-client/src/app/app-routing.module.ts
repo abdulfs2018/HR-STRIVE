@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'timesheet',
     loadChildren: () => import('./modules/timesheet/timesheet.module').then(m => m.TimesheetModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
   }
 ];
 
