@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TimesheetRoutingModule } from './timesheet-routing.module';
+import { TimesheetComponent } from './timesheet/timesheet.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TimesheetComponent
+  ],
   imports: [
     CommonModule,
     TimesheetRoutingModule
