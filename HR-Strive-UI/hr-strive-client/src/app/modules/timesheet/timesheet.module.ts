@@ -1,6 +1,8 @@
+//angular imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+//app imports
 import { TimesheetRoutingModule } from './timesheet-routing.module';
 import { TimesheetComponent } from './timesheet/timesheet.component';
 
