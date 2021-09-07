@@ -28,32 +28,32 @@ export class SidebarComponent {
     {
       icon: faTasks,
       label: 'Dashboard',
-      url: '/dashboard',
+      url: 'dashboard'
     },
     {
       icon: faCalendarAlt,
       label: 'Book Holiday',
-      url: '/holiday/book-holiday',
+      url: 'book-holiday'
     },
     {
       icon: faPlane,
       label: 'Holiday Form',
-      url: '/holiday/holiday-form',
+      url: 'holiday-form',
     },
     {
       icon: faCalculator,
       label: 'Metricz',
-      url: '/metricz',
+      url: 'metricz'
     },
     {
       icon: faClock,
       label: 'Timesheet',
-      url: '/timesheet',
+      url: 'timesheet'
     },
     {
       icon: faUserTie,
       label: 'Users',
-      url: '/users',
-    },
+      url: 'users'
+    }
   ];
 }
