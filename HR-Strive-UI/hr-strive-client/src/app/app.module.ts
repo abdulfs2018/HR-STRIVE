@@ -1,22 +1,31 @@
+//angular imports
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
 
+//libs imports
+import { NxLinkModule } from '@aposin/ng-aquila/link';
+import { NxHeaderModule } from '@aposin/ng-aquila/header';
+
+//app imports
+import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { LoggedInComponent } from './logged-in/logged-in.component';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    LoggedInComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    CoreModule,
+    NxHeaderModule,
+    NxLinkModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
