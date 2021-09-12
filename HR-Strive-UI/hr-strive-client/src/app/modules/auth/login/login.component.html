@@ -1,10 +1,53 @@
-<main>
+<div class="form-container">
     <div nxLayout="grid">
-        <div nxRow>
-            <div nxCol="12">
-                <h2>You must be logged in to view the main component!</h2>
-                <button nxButton="primary" type="button" (click)="logIn()">Log In</button>
+        <div nxRow class="form-box">
+            <div nxCol="12" >
+                <div nxRow class="form-header">
+                    <div nxCol="12">
+                        <p class="form-title">Log In</p>
+                    </div>
+                </div>
+                <form [formGroup]="loginForm">
+                    <div nxLayout="grid">
+                        <div nxRow class="form-email">
+                            <div nxCol="12">
+                                <nx-formfield nxLabel="Email">
+                                    <input nxInput type="email" formControlName="email" />
+                                    <nx-error nxFormfieldError>
+                                        <strong>Please note:</strong> this field is required!
+                                    </nx-error>
+                                </nx-formfield>
+                            </div>
+                        </div>
+                        <div nxRow>
+                            <div nxCol="12">
+                                <nx-formfield nxLabel="Password">
+                                    <input nxInput type="password" formControlName="password" />
+                                    <nx-error nxFormfieldError>
+                                        Password is missing.
+                                    </nx-error>
+                                </nx-formfield>
+                            </div>
+                        </div>
+                        <div nxRow>
+                            <div nxCol="12">
+                                <button [disabled]="loginForm?.invalid" 
+                                    (click)="logIn()" 
+                                    nxButton="secondary"
+                                    type="submit">Submit
+                                </button>
+                            </div>
+                        </div>
+                        <div nxRow class="form-register-link">
+                            <div nxCol="12">
+                                <nx-link>
+                                    <a routerLink='/auth/register'>Not a member? Click here to sign up!</a>
+                                </nx-link>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</main>
+</div>
