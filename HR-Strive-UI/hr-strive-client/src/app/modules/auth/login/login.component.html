@@ -1,7 +1,7 @@
 <div class="form-container">
     <div nxLayout="grid">
         <div nxRow class="form-box">
-            <div nxCol="12" >
+            <div nxCol="12">
                 <div nxRow class="form-header">
                     <div nxCol="12">
                         <p class="form-title">Log In</p>
@@ -12,9 +12,13 @@
                         <div nxRow class="form-email">
                             <div nxCol="12">
                                 <nx-formfield nxLabel="Email">
+                                    <fa-icon [icon]="emailIcon" nxFormfieldPrefix></fa-icon>
                                     <input nxInput type="email" formControlName="email" />
-                                    <nx-error nxFormfieldError>
-                                        <strong>Please note:</strong> this field is required!
+                                    <nx-error nxFormfieldError *ngIf="email?.errors?.required">
+                                        {{ errorMessages.required }}
+                                    </nx-error>
+                                    <nx-error nxFormfieldError *ngIf="email?.errors?.email">
+                                        {{ errorMessages.email }}
                                     </nx-error>
                                 </nx-formfield>
                             </div>
@@ -22,9 +26,30 @@
                         <div nxRow>
                             <div nxCol="12">
                                 <nx-formfield nxLabel="Password">
+                                    <fa-icon [icon]="lockIcon" nxFormfieldPrefix></fa-icon>
                                     <input nxInput type="password" formControlName="password" />
-                                    <nx-error nxFormfieldError>
-                                        Password is missing.
+                                    <nx-error nxFormfieldError *ngIf="password?.errors?.required">
+                                        {{ errorMessages.required }}
+                                    </nx-error>
+                                    <nx-error nxFormfieldError *ngIf="password?.errors?.minlength">
+                                        {{ errorMessages.minLength }}
+                                    </nx-error>
+                                </nx-formfield>
+                            </div>
+                        </div>
+                        <div nxRow>
+                            <div nxCol="12">
+                                <nx-formfield nxLabel="Confirm Password">
+                                    <fa-icon [icon]="lockIcon" nxFormfieldPrefix></fa-icon>
+                                    <input nxInput type="password" formControlName="confirmPassword" />
+                                    <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.required">
+                                        {{ errorMessages.required }}
+                                    </nx-error>
+                                    <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.minlength">
+                                        {{ errorMessages.minLength }}
+                                    </nx-error>
+                                    <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.minlength">
+                                        {{ errorMessages.confirmPassword }}
                                     </nx-error>
                                 </nx-formfield>
                             </div>

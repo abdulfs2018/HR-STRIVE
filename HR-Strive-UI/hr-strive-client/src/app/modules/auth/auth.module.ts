@@ -9,8 +9,8 @@ import { NxButtonModule } from '@aposin/ng-aquila/button';
 import { NxGridModule } from '@aposin/ng-aquila/grid';
 import { NxInputModule } from '@aposin/ng-aquila/input';
 import { NxFormfieldModule } from '@aposin/ng-aquila/formfield';
-import { NxCardModule } from '@aposin/ng-aquila/card';
 import { NxLinkModule } from '@aposin/ng-aquila/link';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 //app imports
 import { AuthRoutingModule } from './auth-routing.module';
@@ -33,7 +33,7 @@ import { RegisterComponent } from './register/register.component';
     NxInputModule,
     NxFormfieldModule,
     ReactiveFormsModule,
-    NxCardModule
+    FontAwesomeModule
   ]
 })
 export class AuthModule { }

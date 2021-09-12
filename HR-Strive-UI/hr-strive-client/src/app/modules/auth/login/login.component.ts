@@ -1,16 +1,45 @@
 //angular imports
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+//libs imports
+import {
+  faLock,
+  faEnvelope
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup = new FormGroup({});
+
+  readonly errorMessages: { [key: string]: string } = {
+    required: 'This field is required!',
+    minLength: 'Minimum length is 8 characters!',
+    email: 'Please enter a valid email!',
+    passwordsDoNotMatch: 'Passwords does not match!'
+  }
+
+  readonly lockIcon = faLock;
+  readonly emailIcon = faEnvelope;
+
+  get email(): AbstractControl | null | undefined {
+    return this?.loginForm?.get('email');
+  }
+
+  get password(): AbstractControl | null | undefined {
+    return this?.loginForm?.get('password');
+  }
+
+  get confirmPassword(): AbstractControl | null | undefined {
+    return this?.loginForm?.get('confirmPassword');
+  }
 
   constructor(private router: Router, private formBuilder: FormBuilder) { }
 
@@ -26,8 +55,14 @@ export class LoginComponent implements OnInit {
   private buildForm(): void {
     this.loginForm = this.formBuilder.group({
       email: [ null, [Validators.required, Validators.email, Validators.maxLength(255) ]],
-      password: [ null, [Validators.required, Validators.min(8), Validators.maxLength(255) ]],
-      confirmPassword: [ null, Validators.required, Validators.min(8), Validators.maxLength(255) ] //TODO: add confirm password validator
+      /**
+       * //TODO: add password regex validator for min 8 characters
+       * - at least one number
+       * - at least one special character
+       * - at least one caplital letter
+       */
+      password: [ null, [Validators.required, Validators.minLength(8), Validators.maxLength(255) ]],
+      confirmPassword: [ null, Validators.required, Validators.minLength(8), Validators.maxLength(255) ] //TODO: add confirm password validator
     });
   }
 }
