@@ -7,7 +7,7 @@
                         <p class="form-title">Log In</p>
                     </div>
                 </div>
-                <form [formGroup]="loginForm">
+                <form [formGroup]="loginForm" autocomplete="off">
                     <div nxLayout="grid">
                         <div nxRow class="form-email">
                             <div nxCol="12">
@@ -48,8 +48,8 @@
                                     <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.minlength">
                                         {{ errorMessages.minLength }}
                                     </nx-error>
-                                    <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.minlength">
-                                        {{ errorMessages.confirmPassword }}
+                                    <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.passwordsDoNotMatch">
+                                        {{ errorMessages.passwordsDoNotMatch }}
                                     </nx-error>
                                 </nx-formfield>
                             </div>
