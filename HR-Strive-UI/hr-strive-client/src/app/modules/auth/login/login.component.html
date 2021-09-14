@@ -1,10 +1,78 @@
-<main>
+<div class="form-container">
     <div nxLayout="grid">
-        <div nxRow>
+        <div nxRow class="form-box">
             <div nxCol="12">
-                <h2>You must be logged in to view the main component!</h2>
-                <button nxButton="primary" type="button" (click)="logIn()">Log In</button>
+                <div nxRow class="form-header">
+                    <div nxCol="12">
+                        <p class="form-title">Log In</p>
+                    </div>
+                </div>
+                <form [formGroup]="loginForm" autocomplete="off">
+                    <div nxLayout="grid">
+                        <div nxRow class="form-email">
+                            <div nxCol="12">
+                                <nx-formfield nxLabel="Email">
+                                    <fa-icon [icon]="emailIcon" nxFormfieldPrefix></fa-icon>
+                                    <input nxInput type="email" formControlName="email" />
+                                    <nx-error nxFormfieldError *ngIf="email?.errors?.required">
+                                        {{ errorMessages.required }}
+                                    </nx-error>
+                                    <nx-error nxFormfieldError *ngIf="email?.errors?.email">
+                                        {{ errorMessages.email }}
+                                    </nx-error>
+                                </nx-formfield>
+                            </div>
+                        </div>
+                        <div nxRow>
+                            <div nxCol="12">
+                                <nx-formfield nxLabel="Password">
+                                    <fa-icon [icon]="lockIcon" nxFormfieldPrefix></fa-icon>
+                                    <input nxInput type="password" formControlName="password" />
+                                    <nx-error nxFormfieldError *ngIf="password?.errors?.required">
+                                        {{ errorMessages.required }}
+                                    </nx-error>
+                                    <nx-error nxFormfieldError *ngIf="password?.errors?.minlength">
+                                        {{ errorMessages.minLength }}
+                                    </nx-error>
+                                </nx-formfield>
+                            </div>
+                        </div>
+                        <div nxRow>
+                            <div nxCol="12">
+                                <nx-formfield nxLabel="Confirm Password">
+                                    <fa-icon [icon]="lockIcon" nxFormfieldPrefix></fa-icon>
+                                    <input nxInput type="password" formControlName="confirmPassword" />
+                                    <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.required">
+                                        {{ errorMessages.required }}
+                                    </nx-error>
+                                    <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.minlength">
+                                        {{ errorMessages.minLength }}
+                                    </nx-error>
+                                    <nx-error nxFormfieldError *ngIf="confirmPassword?.errors?.passwordsDoNotMatch">
+                                        {{ errorMessages.passwordsDoNotMatch }}
+                                    </nx-error>
+                                </nx-formfield>
+                            </div>
+                        </div>
+                        <div nxRow>
+                            <div nxCol="12">
+                                <button [disabled]="loginForm?.invalid" 
+                                    (click)="logIn()" 
+                                    nxButton="secondary"
+                                    type="submit">Submit
+                                </button>
+                            </div>
+                        </div>
+                        <div nxRow class="form-register-link">
+                            <div nxCol="12">
+                                <nx-link>
+                                    <a routerLink='/auth/register'>Not a member? Click here to sign up!</a>
+                                </nx-link>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</main>
+</div>
