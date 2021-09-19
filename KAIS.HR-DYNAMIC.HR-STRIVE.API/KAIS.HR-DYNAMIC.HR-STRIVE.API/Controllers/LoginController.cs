@@ -63,6 +63,18 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API.Controllers
         //    }
         //}
 
+        /// <summary>
+        /// Handle postback from username/password login
+        /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginInputModel model)
+        {
+
+
+            return Ok();
+        }
+
 
         #region repository
         private readonly SignInManager<AppUser> _signInManager;
