@@ -9,6 +9,7 @@ import {
   Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
+// import { NgxSpinnerService } from 'ngx-spinner';
 
 //libs imports
 import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -100,4 +101,24 @@ export class LoginComponent implements OnInit {
         : { passwordsDoNotMatch: true };
     };
   }
+
+  onSubmit() { 
+
+//     this.spinner.show();
+
+//     this.authService.register(this.userRegistration)
+//       .pipe(finalize(() => {
+//         this.spinner.hide();
+//       }))  
+//       .subscribe(
+//       result => {         
+//          if(result) {
+//            this.success = true;
+//          }
+//       },
+//       error => {
+//         this.error = error;       
+//       });
+}
+
 }

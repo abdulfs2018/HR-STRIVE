@@ -1,12 +1,10 @@
-﻿using KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY.Model;
+﻿using KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY
+namespace KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE
 {
-    public class HR_STRIVE_DbContext: DbContext
+    public class HR_STRIVE_DbContext: IdentityDbContext<AppUser>
     {
         public HR_STRIVE_DbContext(DbContextOptions<HR_STRIVE_DbContext> options)
             :base(options)
@@ -20,6 +18,6 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY
         public DbSet<Metricz> Metricz { get; set; }
         public DbSet<TimeSheet> TimeSheets { get; set; }
         public DbSet<Employee> Employee { get; set; }
-        public DbSet<UserAccount> UserAccounts { get; set; }
+        //public DbSet<UserAccount> UserAccounts { get; set; }
     }
 }

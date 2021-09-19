@@ -1,4 +1,4 @@
-﻿namespace KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY.Model
+﻿namespace KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE.Model
 {
     public class Address
     {

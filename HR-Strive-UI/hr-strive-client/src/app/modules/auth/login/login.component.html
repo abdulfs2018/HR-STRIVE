@@ -7,7 +7,7 @@
                         <p class="form-title">Log In</p>
                     </div>
                 </div>
-                <form [formGroup]="loginForm" autocomplete="off">
+                <form [formGroup]="loginForm" autocomplete="off"  (ngSubmit)="onSubmit()">
                     <div nxLayout="grid">
                         <div nxRow class="form-email">
                             <div nxCol="12">

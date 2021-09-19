@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY.Model
+namespace KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE.Model
 {
     public class HolidayRequest
     {
