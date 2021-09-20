@@ -5,4 +5,8 @@
     <RootNamespace>KAIS.HR_DYNAMIC.HR_STRIVE.COMMON</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
 </Project>
