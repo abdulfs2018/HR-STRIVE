@@ -60,29 +60,10 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API.Controllers
                             ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
                         };
                     };
-
-                    // issue authentication cookie with subject ID and username
-                    await HttpContext.SignInAsync(user.Id, user.UserName, props);
-
-                    if (context != null)
-                    {
-                        var dx = await _clientStore.FindClientByIdAsync(context.Client.ClientId);
-
-                        if (await _clientStore.FindClientByIdAsync(context.Client.ClientId))
-                        {
-                            // if the client is PKCE then we assume it's native, so this change in how to
-                            // return the response is for better UX for the end user.
-                            return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
-                        }
-
-                        // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
-                        return Redirect(model.ReturnUrl);
-                    }
-
-
-                    return Ok();
-
                 }
+
+
+                return Ok();
             }catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -107,75 +88,6 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API.Controllers
             return Ok(new RegisterResponseModel(user));
         }
 
-
-        /*****************************************/
-        /* helper APIs for the AccountController */
-        /*****************************************/
-        private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl)
-        {
-            var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
-            if (context?.IdP != null)
-            {
-                var local = context.IdP == IdentityServer4.IdentityServerConstants.LocalIdentityProvider;
-
-                // this is meant to short circuit the UI and only trigger the one external IdP
-                var vm = new LoginViewModel
-                {
-                    EnableLocalLogin = local,
-                    ReturnUrl = returnUrl,
-                    Username = context?.LoginHint,
-                };
-
-                if (!local)
-                {
-                    vm.ExternalProviders = new[] { new ExternalProvider { AuthenticationScheme = context.IdP } };
-                }
-
-                return vm;
-            }
-
-            var schemes = await _schemeProvider.GetAllSchemesAsync();
-
-            var providers = schemes.Where(x => x.DisplayName != null || (x.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName, StringComparison.OrdinalIgnoreCase))
-                )
-                .Select(x => new ExternalProvider
-                {
-                    DisplayName = x.DisplayName,
-                    AuthenticationScheme = x.Name
-                }).ToList();
-
-            var allowLocal = true;
-            if (context?.Client != null)
-            {
-                var client = await _clientStore.FindEnabledClientByIdAsync(context.Client.ClientId);
-                if (client != null)
-                {
-                    allowLocal = client.EnableLocalLogin;
-
-                    if (client.IdentityProviderRestrictions != null && client.IdentityProviderRestrictions.Any())
-                    {
-                        providers = providers.Where(provider => client.IdentityProviderRestrictions.Contains(provider.AuthenticationScheme)).ToList();
-                    }
-                }
-            }
-
-            return new LoginViewModel
-            {
-                AllowRememberLogin = AccountOptions.AllowRememberLogin,
-                EnableLocalLogin = allowLocal && AccountOptions.AllowLocalLogin,
-                ReturnUrl = returnUrl,
-                Username = context?.LoginHint,
-                ExternalProviders = providers.ToArray()
-            };
-        }
-
-        private async Task<LoginViewModel> BuildLoginViewModelAsync(LoginInputModel model)
-        {
-            var vm = await BuildLoginViewModelAsync(model.ReturnUrl);
-            vm.Username = model.Username;
-            vm.RememberLogin = model.RememberLogin;
-            return vm;
-        }
 
 
         #region repository
