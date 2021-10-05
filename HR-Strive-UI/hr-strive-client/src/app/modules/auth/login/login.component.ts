@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
   //TODO: just a dummy implementation, will be replaced when auth process is in place
   public logIn(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home/dashboard']);
   }
 
   private buildForm(): void {

@@ -1,1 +1,114 @@
-<p>book-holiday works!</p>
+<form class="form-example" [formGroup]="formGroup">
+  <div nxLayout="grid">
+
+    <div nxRow class="docs-grid-colored-row">
+      <div nxCol="6" class="docs-grid-colored-col border">
+        <span class="form-title">Request Form</span>
+        <div nxRow class="docs-grid-colored-row">
+          <div nxCol="6" class="docs-grid-colored-col">
+            <h1>Days:</h1>
+          </div>
+          <div nxCol="6" class="docs-grid-colored-col">
+          </div>
+
+        </div>
+        
+        <div nxRow>
+          <div nxCol="4">
+            <nx-formfield nxLabel="From Date" nxFloatLabel="always">
+              <input nxDatefield nxInput [nxMin]="tomorrow" (dateChange)="showHalfDay('no')" [nxDatepicker]="fromDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="currentDateFrom" formControlName="fromDate" />
+              <nx-datepicker-toggle [for]="fromDate" nxFormfieldSuffix></nx-datepicker-toggle>
+              <nx-datepicker #fromDate></nx-datepicker>
+              <span nxFormfieldHint>
+                  dd/mm/yyyy
+              </span>
+            </nx-formfield>
+          </div>
+          <div nxCol="1">
+            <nx-circle-toggle formControlName="halfDayFromToggle" (click)="showHalfDay('from')" checked='false' icon='plus' label='Add half Day' value='A'>
+            </nx-circle-toggle>
+          </div>
+          <div nxCol="7" *ngIf="checkedHalfDayFrom">
+            <nx-circle-toggle-group formControlName="disabledFrom">
+              <nx-circle-toggle *ngFor="let item of disabledFrom" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
+              </nx-circle-toggle>
+            </nx-circle-toggle-group>
+          </div>
+          <div nxCol="7" *ngIf="checkedHalfDayFromDisabled">
+            <nx-circle-toggle-group formControlName="enabledFrom">
+              <nx-circle-toggle *ngFor="let item of enabledFrom" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
+              </nx-circle-toggle>
+            </nx-circle-toggle-group>
+
+          </div>
+        </div>
+        
+        <div nxRow>
+          <div nxCol="4">
+            <nx-formfield nxLabel="To Date" nxFloatLabel="always">
+              <input nxDatefield nxInput [nxMin]="currentDateFrom" (dateChange)="showHalfDay('no')" [nxDatepicker]="toDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="currentDateTo" formControlName="toDate" />
+              <nx-datepicker-toggle [for]="toDate" nxFormfieldSuffix></nx-datepicker-toggle>
+              <nx-datepicker #toDate></nx-datepicker>
+              <span nxFormfieldHint>
+                  dd/mm/yyyy
+              </span>
+            </nx-formfield>
+          </div>
+          <div nxCol="1" *ngIf="!sameDay">
+            <nx-circle-toggle formControlName="halfDayToToggle" (click)="showHalfDay('to')" checked='false' icon='plus' label='Add half Day' value='A'>
+            </nx-circle-toggle>
+          </div>
+          <div nxCol="7" *ngIf="checkedHalfDayTo">
+            <nx-circle-toggle-group formControlName="disabledTo">
+              <nx-circle-toggle *ngFor="let item of disabledTo" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
+              </nx-circle-toggle>
+            </nx-circle-toggle-group>
+          </div>
+        </div>
+        
+        <div nxRow>
+          <div nxCol="12,6">
+            <button nxButton type="submit">Submit</button>
+          </div>
+        </div>
+
+      </div>
+      <div nxCol="6" class="docs-grid-colored-col">
+
+      </div>
+    </div>
+    
+
+    <div nxRow>
+      <div nxCol="12,6">
+        <nx-formfield nxLabel="First Name">
+          <input nxInput formControlName="firstName" />
+          <nx-error nxFormfieldError>
+            <strong>Please note:</strong> this field is required!
+          </nx-error>
+        </nx-formfield>
+      </div>
+
+      <div nxCol="12,6">
+        <nx-formfield nxLabel="Number of items">
+          <nx-dropdown formControlName="items">
+            <nx-dropdown-item nxValue="1">1</nx-dropdown-item>
+            <nx-dropdown-item nxValue="2">2</nx-dropdown-item>
+            <nx-dropdown-item nxValue="3">3</nx-dropdown-item>
+            <nx-dropdown-item nxValue="4">4</nx-dropdown-item>
+            <nx-dropdown-item nxValue="5">5</nx-dropdown-item>
+          </nx-dropdown>
+          <nx-error nxFormfieldError>
+            Please select an option.
+          </nx-error>
+        </nx-formfield>
+      </div>
+    </div>
+
+  </div>
+
+  
+</form>
+
+
+    

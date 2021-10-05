@@ -6,6 +6,21 @@ import { HolidayFormComponent } from './holiday-form/holiday-form.component';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+//libs imports
+import { DatePipe } from '@angular/common';
+import { NxButtonModule } from '@aposin/ng-aquila/button';
+import { NxGridModule } from '@aposin/ng-aquila/grid';
+import { NxInputModule } from '@aposin/ng-aquila/input';
+import { NxFormfieldModule } from '@aposin/ng-aquila/formfield';
+import { NxLinkModule } from '@aposin/ng-aquila/link';
+import { NxPopoverModule } from '@aposin/ng-aquila/popover';
+import { NxDropdownModule} from '@aposin/ng-aquila/dropdown';
+import { NxDatefieldModule } from '@aposin/ng-aquila/datefield';
+import { NxMomentDateModule } from '@aposin/ng-aquila/moment-date-adapter';
+import { NxCircleToggleModule } from '@aposin/ng-aquila/circle-toggle';
+import { NxIconModule } from '@aposin/ng-aquila/icon';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -13,6 +28,9 @@ import { BookHolidayComponent } from './book-holiday/book-holiday.component';
 
 
 @NgModule({
+  providers: [
+    DatePipe
+  ],
   declarations: [
     HomeComponent,
     BookHolidayComponent,
@@ -25,7 +43,19 @@ import { BookHolidayComponent } from './book-holiday/book-holiday.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule,
+    NxButtonModule,
+    NxGridModule,
+    NxInputModule,
+    NxFormfieldModule,
+    NxLinkModule,
+    NxPopoverModule,
+    NxDropdownModule,
+    NxDatefieldModule,
+    NxMomentDateModule,
+    NxCircleToggleModule,
+    NxIconModule
   ]
 })
 export class HomeModule { }
