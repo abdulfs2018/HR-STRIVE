@@ -3,6 +3,7 @@ using IdentityServer4.Events;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using KAIS.HR_DYNAMIC.HR_STRIVE.API.Authentication.Models;
+using KAIS.HR_DYNAMIC.HR_STRIVE.COMMON;
 using KAIS.HR_DYNAMIC.HR_STRIVE.COMMON.Models;
 using KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE.Model;
 using Microsoft.AspNetCore.Authentication;
@@ -35,35 +36,28 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API.Controllers
         /// Handle postback from username/password login
         /// </summary>
         [HttpPost("Login")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginInputModel model)
         {
             try
             {
                 // check if we are in the context of an authorization request
                 var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
+                Token token = null;
+                ServiceResponse response = null;
 
                 // validate username/password
                 var user = await _userManager.FindByNameAsync(model.Username);
                 if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.Name));
+                    token = TokenManager.Instance.GenerateToken();
+                    var convertedToken = BitConverter.ToString(token.ConvertForSending());
 
-                    // only set explicit expiration here if user chooses "remember me". 
-                    // otherwise we rely upon expiration configured in cookie middleware.
-                    AuthenticationProperties props = null;
-                    if (AccountOptions.AllowRememberLogin && model.RememberLogin)
-                    {
-                        props = new AuthenticationProperties
-                        {
-                            IsPersistent = true,
-                            ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
-                        };
-                    };
+                    response = new ServiceResponse { Success = true, ResponseData = convertedToken };
                 }
 
 
-                return Ok();
+                return Ok(response);
             }catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -87,6 +81,9 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API.Controllers
 
             return Ok(new RegisterResponseModel(user));
         }
+
+
+
 
 
 
