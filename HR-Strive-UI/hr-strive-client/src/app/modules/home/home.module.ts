@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 //libs imports
-import { DatePipe } from '@angular/common';
 import { NxButtonModule } from '@aposin/ng-aquila/button';
 import { NxGridModule } from '@aposin/ng-aquila/grid';
 import { NxInputModule } from '@aposin/ng-aquila/input';
@@ -21,6 +20,9 @@ import { NxDatefieldModule } from '@aposin/ng-aquila/datefield';
 import { NxMomentDateModule } from '@aposin/ng-aquila/moment-date-adapter';
 import { NxCircleToggleModule } from '@aposin/ng-aquila/circle-toggle';
 import { NxIconModule } from '@aposin/ng-aquila/icon';
+import { NxTabsModule } from '@aposin/ng-aquila/tabs';
+import { NxTableModule } from '@aposin/ng-aquila/table';
+import { NxBadgeModule } from '@aposin/ng-aquila/badge';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -28,9 +30,6 @@ import { BookHolidayComponent } from './book-holiday/book-holiday.component';
 
 
 @NgModule({
-  providers: [
-    DatePipe
-  ],
   declarations: [
     HomeComponent,
     BookHolidayComponent,
@@ -55,7 +54,10 @@ import { BookHolidayComponent } from './book-holiday/book-holiday.component';
     NxDatefieldModule,
     NxMomentDateModule,
     NxCircleToggleModule,
-    NxIconModule
+    NxIconModule,
+    NxTabsModule,
+    NxTableModule,
+    NxBadgeModule
   ]
 })
 export class HomeModule { }

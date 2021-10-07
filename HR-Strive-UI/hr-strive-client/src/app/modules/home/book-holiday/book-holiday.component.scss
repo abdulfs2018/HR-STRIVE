@@ -13,3 +13,6 @@
     margin-top: 5%;
 }
 
+:host ::ng-deep nx-tab-header {
+    justify-content: flex-start!important;
+  }

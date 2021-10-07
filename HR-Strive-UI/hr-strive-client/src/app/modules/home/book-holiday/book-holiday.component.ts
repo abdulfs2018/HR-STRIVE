@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { faCalendarDay, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import 'moment/locale/en-ie';
 import { NX_DATE_FORMATS } from '@aposin/ng-aquila/datefield';
+
 
 export const MY_FORMATS = {
   parse: {
@@ -28,8 +27,6 @@ export const MY_FORMATS = {
 })
 export class BookHolidayComponent implements OnInit {
 
-  faCalendarDay = faCalendarDay;
-  faPlusCircle = faPlusCircle;
   formGroup: FormGroup;
   tomorrow: moment.Moment;
   currentDateTo: moment.Moment;
@@ -39,6 +36,8 @@ export class BookHolidayComponent implements OnInit {
   checkedHalfDayTo : boolean = false;
   sameDay : boolean = true;
   sameDayPrev : boolean = true;
+  currentIndex : number = 0;
+  defaultDropdownValue : string = '1';
 
   enabledFrom = [
     { value: 'A', circleText: 'AM', selected: false },
@@ -53,16 +52,59 @@ export class BookHolidayComponent implements OnInit {
     { value: 'P', circleText: 'PM', selected: false },
   ];
 
-  constructor(private datePipe: DatePipe) {
+  tableElements = [
+    {
+       id: 1,
+       requestDate: moment().subtract(5, 'days').format("DD/MM/YYYY"),
+       fromDate: moment().format("DD/MM/YYYY"),
+       toDate: moment().add(1, 'days').format("DD/MM/YYYY"),
+       status: 'active',
+       statusText: 'pending',
+       dateApproved: moment().subtract(2, 'days').format("DD/MM/YYYY"),
+       days: 2,
+       approve: ''
+    },
+    {
+      id: 2,
+      requestDate: moment().subtract(3, 'days').format("DD/MM/YYYY"),
+      fromDate: moment().format("DD/MM/YYYY"),
+      toDate: moment().add(3, 'days').format("DD/MM/YYYY"),
+      status: 'positive',
+      statusText: 'approved',
+      dateApproved: moment().subtract(2, 'days').format("DD/MM/YYYY"),
+      days: 4,
+      approve: ''
+    },
+    {
+      id: 3,
+      requestDate: moment().subtract(7, 'days').format("DD/MM/YYYY"),
+      fromDate: moment().add(1, 'days').format("DD/MM/YYYY"),
+      toDate: moment().add(1, 'days').format("DD/MM/YYYY"),
+      status: 'negative',
+      statusText: 'review',
+      dateApproved: moment().subtract(2, 'days').format("DD/MM/YYYY"),
+      days: 1,
+      approve: 'Edit'
+    },
+    {
+      id: 4,
+      requestDate: moment().subtract(5, 'days').format("DD/MM/YYYY"),
+      fromDate: moment().subtract(3, 'days').format("DD/MM/YYYY"),
+      toDate: moment().add(3, 'days').format("DD/MM/YYYY"),
+      status: 'critical',
+      statusText: 'declined',
+      dateApproved: moment().subtract(2, 'days').format("DD/MM/YYYY"),
+      days: 7,
+      approve: 'Update'
+    }
+  ];
+
+  constructor() {
     moment.locale('en-ie');
-    this.datePipe = datePipe;
     this.tomorrow = moment().add(1, 'days');
     this.currentDateFrom = this.tomorrow;
     this.currentDateTo = this.tomorrow;
     this.formGroup = new FormBuilder().group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      items: ['', Validators.required],
       fromDate: ['', Validators.required],
       toDate: ['', Validators.required],
       enabledFrom: ['', Validators.required],
@@ -71,7 +113,6 @@ export class BookHolidayComponent implements OnInit {
       halfDayFromToggle: ['false', Validators.required],
       halfDayToToggle: ['false', Validators.required]
     });
-    console.log(this.currentDateFrom);
     
     this.formGroup.get("disabledFrom")?.disable();
     this.formGroup.get("disabledTo")?.disable();
@@ -83,7 +124,7 @@ export class BookHolidayComponent implements OnInit {
   showHalfDay(action : String) : void {
 
     this.sameDayPrev = this.sameDay;
-    if (this.sameDay = this.datePipe.transform(new Date(this.formGroup.get("fromDate")?.value),"dd-MM-yyyy") == this.datePipe.transform(this.formGroup.get("toDate")?.value,"dd-MM-yyyy")) 
+    if (this.sameDay = moment(this.formGroup.get("fromDate")?.value).isSame(this.formGroup.get("toDate")?.value))
     {
       if (this.sameDayPrev == this.sameDay) {
         this.checkedHalfDayFromDisabled = !this.checkedHalfDayFromDisabled;

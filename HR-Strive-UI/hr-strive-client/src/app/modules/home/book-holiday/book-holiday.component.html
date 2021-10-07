@@ -5,12 +5,20 @@
       <div nxCol="6" class="docs-grid-colored-col border">
         <span class="form-title">Request Form</span>
         <div nxRow class="docs-grid-colored-row">
-          <div nxCol="6" class="docs-grid-colored-col">
+          <div nxCol="2" class="docs-grid-colored-col">
             <h1>Days:</h1>
+            
           </div>
-          <div nxCol="6" class="docs-grid-colored-col">
+          <div nxCol="2" class="docs-grid-colored-col">
+              <nx-formfield>
+                <nx-dropdown [(nxValue)]="defaultDropdownValue">
+                  <nx-dropdown-item *ngFor="let e of [].constructor(30); let i = index" nxValue="{{i + 1}}"></nx-dropdown-item>
+                </nx-dropdown>
+                <nx-error nxFormfieldError>
+                  Please select an option.
+                </nx-error>
+              </nx-formfield>
           </div>
-
         </div>
         
         <div nxRow>
@@ -77,38 +85,76 @@
 
       </div>
     </div>
-    
-
-    <div nxRow>
-      <div nxCol="12,6">
-        <nx-formfield nxLabel="First Name">
-          <input nxInput formControlName="firstName" />
-          <nx-error nxFormfieldError>
-            <strong>Please note:</strong> this field is required!
-          </nx-error>
-        </nx-formfield>
-      </div>
-
-      <div nxCol="12,6">
-        <nx-formfield nxLabel="Number of items">
-          <nx-dropdown formControlName="items">
-            <nx-dropdown-item nxValue="1">1</nx-dropdown-item>
-            <nx-dropdown-item nxValue="2">2</nx-dropdown-item>
-            <nx-dropdown-item nxValue="3">3</nx-dropdown-item>
-            <nx-dropdown-item nxValue="4">4</nx-dropdown-item>
-            <nx-dropdown-item nxValue="5">5</nx-dropdown-item>
-          </nx-dropdown>
-          <nx-error nxFormfieldError>
-            Please select an option.
-          </nx-error>
-        </nx-formfield>
-      </div>
-    </div>
 
   </div>
 
-  
 </form>
+
+<h2 nxHeadline="subsection-medium" class="nx-font-weight-bold">Holiday Requests</h2>
+
+<nx-tab-group [(selectedIndex)]="currentIndex">
+  <nx-tab>
+    <ng-template nxTabLabel>
+      <nx-icon name="plus" size="s" aria-hidden="true"></nx-icon>
+      My Holidays
+    </ng-template>
+    <p class="tab__content">Tab content 1 in a paragraph tag.</p>
+  </nx-tab>
+</nx-tab-group>
+
+
+<nx-swipebar label="Scroll to see more">
+  <table nxTable>
+    <thead>
+      <tr nxTableRow>
+        <th nxHeaderCell>
+          Id
+        </th>
+        <th nxHeaderCell>
+          Request Date
+        </th>
+        <th nxHeaderCell>
+          From Date
+        </th>
+        <th nxHeaderCell>
+          To Date
+        </th>
+        <th nxHeaderCell>
+          Status
+        </th>
+        <th nxHeaderCell>
+          Date Approved
+        </th>
+        <th nxHeaderCell>
+          Days
+        </th>
+        <th nxHeaderCell>
+          Approve
+        </th>
+        <th nxHeaderCell>
+          
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr nxTableRow *ngFor="let item of tableElements">
+        <td nxTableCell>{{item.id}}</td>
+        <td nxTableCell>{{item.requestDate}}</td>
+        <td nxTableCell>{{item.fromDate}}</td>
+        <td nxTableCell>{{item.toDate}}</td>
+        <td nxTableCell><nx-badge [type]="item.status">{{item.statusText}}</nx-badge></td>
+        <td nxTableCell>{{item.dateApproved}}</td>
+        <td nxTableCell>{{item.days}}</td>
+        <td nxTableCell><nx-link><a routerLink='#'>{{item.approve}}</a></nx-link></td>
+        <td nxTableCell>
+          <button nxPlainButton (click)="true" aria-label="Remove row">
+            <nx-icon name="trash-o"></nx-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</nx-swipebar>
 
 
     
