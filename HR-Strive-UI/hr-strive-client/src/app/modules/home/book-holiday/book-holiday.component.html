@@ -98,63 +98,71 @@
       <nx-icon name="plus" size="s" aria-hidden="true"></nx-icon>
       My Holidays
     </ng-template>
-    <p class="tab__content">Tab content 1 in a paragraph tag.</p>
+    <nx-swipebar label="Scroll to see more">
+      <table nxTable>
+        <thead>
+          <tr nxTableRow>
+            <th nxHeaderCell>
+              Id
+            </th>
+            <th nxHeaderCell>
+              Request Date
+            </th>
+            <th nxHeaderCell>
+              From Date
+            </th>
+            <th nxHeaderCell>
+              To Date
+            </th>
+            <th nxHeaderCell>
+              Status
+            </th>
+            <th nxHeaderCell>
+              Date Approved
+            </th>
+            <th nxHeaderCell>
+              Days
+            </th>
+            <th nxHeaderCell>
+              Approve
+            </th>
+            <th nxHeaderCell>
+              
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr nxTableRow *ngFor="let item of tableElements">
+            <td nxTableCell>{{item.id}}</td>
+            <td nxTableCell>{{item.requestDate}}</td>
+            <td nxTableCell>{{item.fromDate}}</td>
+            <td nxTableCell>{{item.toDate}}</td>
+            <td nxTableCell><nx-badge [type]="item.status">{{item.statusText}}</nx-badge></td>
+            <td nxTableCell>{{item.dateApproved}}</td>
+            <td nxTableCell>{{item.days}}</td>
+            <td nxTableCell><nx-link><a routerLink='#'>{{item.approve}}</a></nx-link></td>
+            <td nxTableCell>
+              
+              
+              <button *ngIf="item.buttons.edit" nxPlainButton (click)="true" aria-label="Edit row">
+                <nx-icon name="arrow-last"></nx-icon>
+              </button>
+              <button *ngIf="item.buttons.update" nxPlainButton (click)="true" aria-label="Update row">
+                <nx-icon name="exclamation-triangle"></nx-icon>
+              </button>
+              <button *ngIf="item.buttons.delete" nxPlainButton (click)="true" aria-label="Remove row">
+                <nx-icon name="trash-o"></nx-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </nx-swipebar>
   </nx-tab>
 </nx-tab-group>
 
 
-<nx-swipebar label="Scroll to see more">
-  <table nxTable>
-    <thead>
-      <tr nxTableRow>
-        <th nxHeaderCell>
-          Id
-        </th>
-        <th nxHeaderCell>
-          Request Date
-        </th>
-        <th nxHeaderCell>
-          From Date
-        </th>
-        <th nxHeaderCell>
-          To Date
-        </th>
-        <th nxHeaderCell>
-          Status
-        </th>
-        <th nxHeaderCell>
-          Date Approved
-        </th>
-        <th nxHeaderCell>
-          Days
-        </th>
-        <th nxHeaderCell>
-          Approve
-        </th>
-        <th nxHeaderCell>
-          
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr nxTableRow *ngFor="let item of tableElements">
-        <td nxTableCell>{{item.id}}</td>
-        <td nxTableCell>{{item.requestDate}}</td>
-        <td nxTableCell>{{item.fromDate}}</td>
-        <td nxTableCell>{{item.toDate}}</td>
-        <td nxTableCell><nx-badge [type]="item.status">{{item.statusText}}</nx-badge></td>
-        <td nxTableCell>{{item.dateApproved}}</td>
-        <td nxTableCell>{{item.days}}</td>
-        <td nxTableCell><nx-link><a routerLink='#'>{{item.approve}}</a></nx-link></td>
-        <td nxTableCell>
-          <button nxPlainButton (click)="true" aria-label="Remove row">
-            <nx-icon name="trash-o"></nx-icon>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</nx-swipebar>
+
 
 
     

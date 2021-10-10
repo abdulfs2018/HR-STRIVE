@@ -5,6 +5,10 @@ import 'moment/locale/en-ie';
 import { NX_DATE_FORMATS } from '@aposin/ng-aquila/datefield';
 
 
+//app imports
+import { HolidayRequest } from './../../../core/models/holiday-request';
+
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'L',
@@ -22,7 +26,7 @@ export const MY_FORMATS = {
   templateUrl: './book-holiday.component.html',
   styleUrls: ['./book-holiday.component.scss'],
   providers: [
-    {provide: NX_DATE_FORMATS, useValue: MY_FORMATS},
+    {provide: NX_DATE_FORMATS, useValue: MY_FORMATS}
   ]
 })
 export class BookHolidayComponent implements OnInit {
@@ -52,7 +56,7 @@ export class BookHolidayComponent implements OnInit {
     { value: 'P', circleText: 'PM', selected: false },
   ];
 
-  tableElements = [
+  readonly tableElements: HolidayRequest[] = [
     {
        id: 1,
        requestDate: moment().subtract(5, 'days').format("DD/MM/YYYY"),
@@ -62,7 +66,12 @@ export class BookHolidayComponent implements OnInit {
        statusText: 'pending',
        dateApproved: moment().subtract(2, 'days').format("DD/MM/YYYY"),
        days: 2,
-       approve: ''
+       approve: '',
+       buttons: {
+        edit: false,
+        update: false,
+        delete: true
+      }
     },
     {
       id: 2,
@@ -73,7 +82,12 @@ export class BookHolidayComponent implements OnInit {
       statusText: 'approved',
       dateApproved: moment().subtract(2, 'days').format("DD/MM/YYYY"),
       days: 4,
-      approve: ''
+      approve: '',
+      buttons: {
+        edit: false,
+        update: false,
+        delete: false
+      }
     },
     {
       id: 3,
@@ -84,7 +98,12 @@ export class BookHolidayComponent implements OnInit {
       statusText: 'review',
       dateApproved: moment().subtract(2, 'days').format("DD/MM/YYYY"),
       days: 1,
-      approve: 'Edit'
+      approve: 'Edit',
+      buttons: {
+        edit: true,
+        update: false,
+        delete: false
+      }
     },
     {
       id: 4,
@@ -95,9 +114,16 @@ export class BookHolidayComponent implements OnInit {
       statusText: 'declined',
       dateApproved: moment().subtract(2, 'days').format("DD/MM/YYYY"),
       days: 7,
-      approve: 'Update'
+      approve: 'Update',
+      buttons: {
+        edit: false,
+        update: true,
+        delete: true
+      }
     }
   ];
+
+  
 
   constructor() {
     moment.locale('en-ie');
