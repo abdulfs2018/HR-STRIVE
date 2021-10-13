@@ -1,4 +1,4 @@
-<form class="form-example" [formGroup]="formGroup">
+
   <div nxLayout="grid">
 
     <div nxRow class="docs-grid-colored-row">
@@ -11,8 +11,8 @@
           </div>
           <div nxCol="2" class="docs-grid-colored-col">
               <nx-formfield>
-                <nx-dropdown [(nxValue)]="defaultDropdownValue">
-                  <nx-dropdown-item *ngFor="let e of [].constructor(30); let i = index" nxValue="{{i + 1}}"></nx-dropdown-item>
+                <nx-dropdown [(nxValue)]="request.days">
+                  <nx-dropdown-item (click)="setDateFromDays(i + 1)" *ngFor="let e of [].constructor(30); let i = index" nxValue="{{i + 1}}"></nx-dropdown-item>
                 </nx-dropdown>
                 <nx-error nxFormfieldError>
                   Please select an option.
@@ -24,7 +24,7 @@
         <div nxRow>
           <div nxCol="4">
             <nx-formfield nxLabel="From Date" nxFloatLabel="always">
-              <input nxDatefield nxInput [nxMin]="tomorrow" (dateChange)="showHalfDay('no')" [nxDatepicker]="fromDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="currentDateFrom" formControlName="fromDate" />
+              <input nxDatefield nxInput [nxMin]="tomorrow" (dateChange)="showHalfDay('no');setDaysFromDate();" [nxDatepicker]="fromDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="request.fromDate" />
               <nx-datepicker-toggle [for]="fromDate" nxFormfieldSuffix></nx-datepicker-toggle>
               <nx-datepicker #fromDate></nx-datepicker>
               <span nxFormfieldHint>
@@ -33,17 +33,17 @@
             </nx-formfield>
           </div>
           <div nxCol="1">
-            <nx-circle-toggle formControlName="halfDayFromToggle" (click)="showHalfDay('from')" checked='false' icon='plus' label='Add half Day' value='A'>
+            <nx-circle-toggle (click)="showHalfDay('from')" checked='false' icon='plus' label='Add half Day' value='A'>
             </nx-circle-toggle>
           </div>
           <div nxCol="7" *ngIf="checkedHalfDayFrom">
-            <nx-circle-toggle-group formControlName="disabledFrom">
+            <nx-circle-toggle-group disabled="true">
               <nx-circle-toggle *ngFor="let item of disabledFrom" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
               </nx-circle-toggle>
             </nx-circle-toggle-group>
           </div>
           <div nxCol="7" *ngIf="checkedHalfDayFromDisabled">
-            <nx-circle-toggle-group formControlName="enabledFrom">
+            <nx-circle-toggle-group>
               <nx-circle-toggle *ngFor="let item of enabledFrom" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
               </nx-circle-toggle>
             </nx-circle-toggle-group>
@@ -54,7 +54,7 @@
         <div nxRow>
           <div nxCol="4">
             <nx-formfield nxLabel="To Date" nxFloatLabel="always">
-              <input nxDatefield nxInput [nxMin]="currentDateFrom" (dateChange)="showHalfDay('no')" [nxDatepicker]="toDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="currentDateTo" formControlName="toDate" />
+              <input nxDatefield nxInput [nxMin]="request.fromDate" (dateChange)="showHalfDay('no');setDaysFromDate();" [nxDatepicker]="toDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="request.toDate" />
               <nx-datepicker-toggle [for]="toDate" nxFormfieldSuffix></nx-datepicker-toggle>
               <nx-datepicker #toDate></nx-datepicker>
               <span nxFormfieldHint>
@@ -63,11 +63,11 @@
             </nx-formfield>
           </div>
           <div nxCol="1" *ngIf="!sameDay">
-            <nx-circle-toggle formControlName="halfDayToToggle" (click)="showHalfDay('to')" checked='false' icon='plus' label='Add half Day' value='A'>
+            <nx-circle-toggle (click)="showHalfDay('to')" checked='false' icon='plus' label='Add half Day' value='A'>
             </nx-circle-toggle>
           </div>
           <div nxCol="7" *ngIf="checkedHalfDayTo">
-            <nx-circle-toggle-group formControlName="disabledTo">
+            <nx-circle-toggle-group disabled="true">
               <nx-circle-toggle *ngFor="let item of disabledTo" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
               </nx-circle-toggle>
             </nx-circle-toggle-group>
@@ -88,78 +88,78 @@
 
   </div>
 
-</form>
+<div nxLayout="grid">
+  <h2 nxHeadline="subsection-medium" class="nx-font-weight-bold">Holiday Requests</h2>
 
-<h2 nxHeadline="subsection-medium" class="nx-font-weight-bold">Holiday Requests</h2>
-
-<nx-tab-group [(selectedIndex)]="currentIndex">
-  <nx-tab>
-    <ng-template nxTabLabel>
-      <nx-icon name="plus" size="s" aria-hidden="true"></nx-icon>
-      My Holidays
-    </ng-template>
-    <nx-swipebar label="Scroll to see more">
-      <table nxTable>
-        <thead>
-          <tr nxTableRow>
-            <th nxHeaderCell>
-              Id
-            </th>
-            <th nxHeaderCell>
-              Request Date
-            </th>
-            <th nxHeaderCell>
-              From Date
-            </th>
-            <th nxHeaderCell>
-              To Date
-            </th>
-            <th nxHeaderCell>
-              Status
-            </th>
-            <th nxHeaderCell>
-              Date Approved
-            </th>
-            <th nxHeaderCell>
-              Days
-            </th>
-            <th nxHeaderCell>
-              Approve
-            </th>
-            <th nxHeaderCell>
-              
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr nxTableRow *ngFor="let item of tableElements">
-            <td nxTableCell>{{item.id}}</td>
-            <td nxTableCell>{{item.requestDate}}</td>
-            <td nxTableCell>{{item.fromDate}}</td>
-            <td nxTableCell>{{item.toDate}}</td>
-            <td nxTableCell><nx-badge [type]="item.status">{{item.statusText}}</nx-badge></td>
-            <td nxTableCell>{{item.dateApproved}}</td>
-            <td nxTableCell>{{item.days}}</td>
-            <td nxTableCell><nx-link><a routerLink='#'>{{item.approve}}</a></nx-link></td>
-            <td nxTableCell>
-              
-              
-              <button *ngIf="item.buttons.edit" nxPlainButton (click)="true" aria-label="Edit row">
-                <nx-icon name="arrow-last"></nx-icon>
-              </button>
-              <button *ngIf="item.buttons.update" nxPlainButton (click)="true" aria-label="Update row">
-                <nx-icon name="exclamation-triangle"></nx-icon>
-              </button>
-              <button *ngIf="item.buttons.delete" nxPlainButton (click)="true" aria-label="Remove row">
-                <nx-icon name="trash-o"></nx-icon>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </nx-swipebar>
-  </nx-tab>
-</nx-tab-group>
+  <nx-tab-group [(selectedIndex)]="currentIndex">
+    <nx-tab>
+      <ng-template nxTabLabel>
+        <nx-icon name="plus" size="s" aria-hidden="true"></nx-icon>
+        My Holidays
+      </ng-template>
+      <nx-swipebar label="Scroll to see more">
+        <table nxTable>
+          <thead>
+            <tr nxTableRow>
+              <th nxHeaderCell>
+                Id
+              </th>
+              <th nxHeaderCell>
+                Request Date
+              </th>
+              <th nxHeaderCell>
+                From Date
+              </th>
+              <th nxHeaderCell>
+                To Date
+              </th>
+              <th nxHeaderCell>
+                Status
+              </th>
+              <th nxHeaderCell>
+                Date Approved
+              </th>
+              <th nxHeaderCell>
+                Days
+              </th>
+              <th nxHeaderCell>
+                Approve
+              </th>
+              <th nxHeaderCell>
+                
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr nxTableRow *ngFor="let item of response">
+              <td nxTableCell>{{item.id}}</td>
+              <td nxTableCell>{{item.requestDate}}</td>
+              <td nxTableCell>{{item.fromDate}}</td>
+              <td nxTableCell>{{item.toDate}}</td>
+              <td nxTableCell><nx-badge [type]="item.status">{{item.statusText}}</nx-badge></td>
+              <td nxTableCell>{{item.dateApproved}}</td>
+              <td nxTableCell>{{item.days}}</td>
+              <td nxTableCell><nx-link><a routerLink='#'>{{item.approve}}</a></nx-link></td>
+              <td nxTableCell>
+                
+                
+                <button *ngIf="item.buttons.edit" nxPlainButton (click)="true" aria-label="Edit row">
+                  <nx-icon name="arrow-last"></nx-icon>
+                </button>
+                <button *ngIf="item.buttons.update" nxPlainButton (click)="true" aria-label="Update row">
+                  <nx-icon name="exclamation-triangle"></nx-icon>
+                </button>
+                <button *ngIf="item.buttons.delete" nxPlainButton (click)="true" aria-label="Remove row">
+                  <nx-icon name="trash-o"></nx-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </nx-swipebar>
+    </nx-tab>
+  </nx-tab-group>
+</div>
 
 
 

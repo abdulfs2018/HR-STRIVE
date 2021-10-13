@@ -7,6 +7,11 @@ import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
+import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home/home.component';
+import { BookHolidayComponent } from './book-holiday/book-holiday.component';
+
 
 //libs imports
 import { NxButtonModule } from '@aposin/ng-aquila/button';
@@ -24,9 +29,6 @@ import { NxTabsModule } from '@aposin/ng-aquila/tabs';
 import { NxTableModule } from '@aposin/ng-aquila/table';
 import { NxBadgeModule } from '@aposin/ng-aquila/badge';
 
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home/home.component';
-import { BookHolidayComponent } from './book-holiday/book-holiday.component';
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { BookHolidayComponent } from './book-holiday/book-holiday.component';
     NxIconModule,
     NxTabsModule,
     NxTableModule,
-    NxBadgeModule
+    NxBadgeModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

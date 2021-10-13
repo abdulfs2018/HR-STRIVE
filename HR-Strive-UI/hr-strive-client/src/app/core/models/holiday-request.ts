@@ -1,17 +1,8 @@
-export interface HolidayRequest {
+import * as moment from "moment";
 
-    id: number,
-    requestDate: string,
-    fromDate: string,
-    toDate: string,
-    status: string,
-    statusText: string,
-    dateApproved: string,
-    days: number,
-    approve: string,
-    buttons: {
-        edit: boolean,
-        update: boolean,
-        delete: boolean
-    }
+export interface HolidayRequest {
+    fromDate: moment.Moment,
+    toDate: moment.Moment,
+    days: string,
+    halfDay: string
 }
