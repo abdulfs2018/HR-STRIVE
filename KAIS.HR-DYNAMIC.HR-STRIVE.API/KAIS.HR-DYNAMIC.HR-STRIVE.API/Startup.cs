@@ -1,6 +1,8 @@
+using KAIS.HR_DYNAMIC.HR_STRIVE.API.Authentication;
 using KAIS.HR_DYNAMIC.HR_STRIVE.COMMON.Utilities;
-using KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY;
-using KAIS.HR_DYNAMIC.HR_STRIVE.REPOSITORY.Repository;
+using KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE;
+using KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE.Model;
+using KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,10 +34,26 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<HR_STRIVE_DbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("KAIS.HR-DYNAMIC.HR-STRIVE.INFRASTRUCTURE"));
+            });
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<HR_STRIVE_DbContext>();
-            services.AddDbContext<HR_STRIVE_DbContext>();
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<HR_STRIVE_DbContext>().AddDefaultTokenProviders();
+            //services.AddDbContext<HR_STRIVE_DbContext>();
+
+            services.AddIdentityServer().AddDeveloperSigningCredential()
+                // this adds the operational data from DB (codes, tokens, consents)
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = builder => builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("KAIS.HR-DYNAMIC.HR-STRIVE.INFRASTRUCTURE"));
+                    // this enables automatic token cleanup. this is optional.
+                    options.EnableTokenCleanup = true;
+                    options.TokenCleanupInterval = 30; // interval in seconds
+                })
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients())
+                .AddAspNetIdentity<AppUser>();
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -61,6 +79,7 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseIdentityServer();
             var swaggerConfiguration = new SwaggerConfiguration();
             Configuration.GetSection(nameof(SwaggerConfiguration)).Bind(swaggerConfiguration);
             app.UseSwagger(option =>
@@ -68,7 +87,8 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API
                 option.RouteTemplate = swaggerConfiguration.JsonRoute;
             });
 
-            app.UseSwaggerUI(option => {
+            app.UseSwaggerUI(option =>
+            {
                 option.SwaggerEndpoint(swaggerConfiguration.UiEndpoint, swaggerConfiguration.Description);
                 option.RoutePrefix = string.Empty;
             });
@@ -84,7 +104,7 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.API
                         .AllowAnyHeader();
 
             });
-            
+
             app.UseMvc();
         }
     }
