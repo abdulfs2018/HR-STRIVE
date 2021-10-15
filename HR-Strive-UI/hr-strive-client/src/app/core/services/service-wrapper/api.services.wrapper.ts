@@ -14,8 +14,4 @@ export class ApiWrapperService {
   ) { }
 
 
-//   public getRegistrars(): Observable<Array<LoginResponse>> {
-//     return this.httpClient.get<Array<LoginResponse>>(`${this.configuration.baseApiURL}/Login/CheckLoginDetail`);
-//   }
-
 }

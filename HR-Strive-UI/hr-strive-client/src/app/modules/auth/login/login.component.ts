@@ -104,21 +104,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() { 
 
-//     this.spinner.show();
-
-//     this.authService.register(this.userRegistration)
-//       .pipe(finalize(() => {
-//         this.spinner.hide();
-//       }))  
-//       .subscribe(
-//       result => {         
-//          if(result) {
-//            this.success = true;
-//          }
-//       },
-//       error => {
-//         this.error = error;       
-//       });
-}
+  }
 
 }
