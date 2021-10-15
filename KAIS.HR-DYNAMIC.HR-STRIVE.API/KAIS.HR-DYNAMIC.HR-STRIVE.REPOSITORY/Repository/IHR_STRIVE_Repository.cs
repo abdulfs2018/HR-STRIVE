@@ -7,7 +7,6 @@ namespace KAIS.HR_DYNAMIC.HR_STRIVE.INFRASTRUCTURE.Repository
 {
     public interface IHR_STRIVE_Repository
     {
-        Task<ServiceResponse> Login(LogInDetails details);
-        Task<bool> CreateUserAccount(UserAccount user);
+
     }
 }
