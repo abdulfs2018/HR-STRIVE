@@ -24,7 +24,7 @@
         <div nxRow>
           <div nxCol="4">
             <nx-formfield nxLabel="From Date" nxFloatLabel="always">
-              <input nxDatefield nxInput [nxMin]="tomorrow" (dateChange)="showHalfDay('no');setDaysFromDate();" [nxDatepicker]="fromDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="request.fromDate" />
+              <input nxDatefield nxInput [nxMin]="tomorrow" (dateChange)="setDaysFromDate();showHalfDay();" [nxDatepicker]="fromDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="request.fromDate" />
               <nx-datepicker-toggle [for]="fromDate" nxFormfieldSuffix></nx-datepicker-toggle>
               <nx-datepicker #fromDate></nx-datepicker>
               <span nxFormfieldHint>
@@ -33,17 +33,17 @@
             </nx-formfield>
           </div>
           <div nxCol="1">
-            <nx-circle-toggle (click)="showHalfDay('from')" checked='false' icon='plus' label='Add half Day' value='A'>
+            <nx-circle-toggle [(ngModel)]="fromChecked" checked='false' icon='plus' label='Add half Day' (ngModelChange)="showHalfDay()">
             </nx-circle-toggle>
           </div>
-          <div nxCol="7" *ngIf="checkedHalfDayFrom">
+          <div nxCol="7" *ngIf="!sameDay && fromChecked">
             <nx-circle-toggle-group disabled="true">
               <nx-circle-toggle *ngFor="let item of disabledFrom" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
               </nx-circle-toggle>
             </nx-circle-toggle-group>
           </div>
-          <div nxCol="7" *ngIf="checkedHalfDayFromDisabled">
-            <nx-circle-toggle-group>
+          <div nxCol="7" *ngIf="sameDay && fromChecked">
+            <nx-circle-toggle-group [(ngModel)]="halfPick" (ngModelChange)="showHalfDay()">
               <nx-circle-toggle *ngFor="let item of enabledFrom" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
               </nx-circle-toggle>
             </nx-circle-toggle-group>
@@ -54,7 +54,7 @@
         <div nxRow>
           <div nxCol="4">
             <nx-formfield nxLabel="To Date" nxFloatLabel="always">
-              <input nxDatefield nxInput [nxMin]="request.fromDate" (dateChange)="showHalfDay('no');setDaysFromDate();" [nxDatepicker]="toDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="request.toDate" />
+              <input nxDatefield nxInput [nxMin]="request.fromDate" (dateChange)="setDaysFromDate();showHalfDay();" [nxDatepicker]="toDate" nxDisplayFormat="DD/MM/YYYY" [nxParseFormat]="['DD/MM/YYYY']" [(ngModel)]="request.toDate" />
               <nx-datepicker-toggle [for]="toDate" nxFormfieldSuffix></nx-datepicker-toggle>
               <nx-datepicker #toDate></nx-datepicker>
               <span nxFormfieldHint>
@@ -63,10 +63,10 @@
             </nx-formfield>
           </div>
           <div nxCol="1" *ngIf="!sameDay">
-            <nx-circle-toggle (click)="showHalfDay('to')" checked='false' icon='plus' label='Add half Day' value='A'>
+            <nx-circle-toggle [(ngModel)]="toChecked" checked='false' icon='plus' label='Add half Day' (ngModelChange)="showHalfDay()">
             </nx-circle-toggle>
           </div>
-          <div nxCol="7" *ngIf="checkedHalfDayTo">
+          <div nxCol="7" *ngIf="!sameDay && toChecked">
             <nx-circle-toggle-group disabled="true">
               <nx-circle-toggle *ngFor="let item of disabledTo" [value]="item.value" [circleText]="item.circleText" [checked]="item.selected">
               </nx-circle-toggle>

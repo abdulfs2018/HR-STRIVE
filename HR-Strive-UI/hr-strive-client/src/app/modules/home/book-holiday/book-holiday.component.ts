@@ -31,25 +31,24 @@ export const MY_FORMATS = {
 export class BookHolidayComponent implements OnInit {
 
   tomorrow: moment.Moment;
-  checkedHalfDayFrom : boolean = false;
-  checkedHalfDayFromDisabled : boolean = false;
-  checkedHalfDayTo : boolean = false;
-  sameDay : boolean = true;
-  sameDayPrev : boolean = true;
+  sameDay = true;
   currentIndex : number = 0;
   defaultDropdownValue : string = '1';
+  fromChecked : boolean = false;
+  toChecked : boolean = false;
+  halfPick : string = 'A';
 
   enabledFrom = [
     { value: 'A', circleText: 'AM', selected: false },
-    { value: 'P', circleText: 'PM', selected: false },
+    { value: 'P', circleText: 'PM', selected: false }
   ];
   disabledFrom = [
     { value: 'A', circleText: 'AM', selected: false },
-    { value: 'P', circleText: 'PM', selected: true },
+    { value: 'P', circleText: 'PM', selected: true }
   ];
   disabledTo = [
     { value: 'A', circleText: 'AM', selected: true },
-    { value: 'P', circleText: 'PM', selected: false },
+    { value: 'P', circleText: 'PM', selected: false }
   ];
 
   request: HolidayRequest;
@@ -141,56 +140,35 @@ export class BookHolidayComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showHalfDay(action : String) : void {
+  showHalfDay() : void {
 
-    // function can now be revised with the ngmodel inputs, for now this works, so it'll be redone on next commit
-    this.sameDayPrev = this.sameDay;
-    if (this.sameDay = this.request.fromDate.isSame(this.request.toDate, 'day'))
-    {
-      if (this.sameDayPrev == this.sameDay) {
-        this.checkedHalfDayFromDisabled = !this.checkedHalfDayFromDisabled;
-      } else {
-        this.checkedHalfDayFromDisabled = false;
-      }
-      this.checkedHalfDayFrom = false;
-      this.checkedHalfDayTo = false;
-    } else
-    {
-      this.checkedHalfDayFromDisabled = false;
-      if (action == 'from')
-      {
-        this.checkedHalfDayFrom = !this.checkedHalfDayFrom; 
-        if (this.checkedHalfDayFrom) {
-          if(this.checkedHalfDayTo) {
-            this.request.halfDay = 'pm/am'
-          } else {
-            this.request.halfDay = 'pm';
-          }
-      } else {
-        this.request.halfDay = '';
-      }
-      }
-      else if (action == 'to')
-      {
-        this.checkedHalfDayTo = !this.checkedHalfDayTo;
+    this.request.halfDay = '';
 
-        if (this.checkedHalfDayTo) {
-            if(this.checkedHalfDayFrom) {
-              this.request.halfDay = 'pm/am'
-            } else {
-              this.request.halfDay = 'am';
-            }
+    if (this.request.fromDate.isSame(this.request.toDate, 'day')) {
+      this.sameDay = true;
+
+      if(this.fromChecked) {
+        if (this.halfPick == 'A') {
+          this.request.halfDay = 'am';
         } else {
-          this.request.halfDay = '';
+          this.request.halfDay = 'pm';
         }
-        
-      }  
-    }
+      }
+    } else {
+      this.sameDay = false;
 
-    if (this.sameDayPrev != this.sameDay) {
-        
+      if (this.fromChecked) {
+        if (this.toChecked) {
+          this.request.halfDay  = 'pm/am';
+        } else {
+          this.request.halfDay += 'pm';
+        }
+      } else if (this.toChecked) {
+        this.request.halfDay = 'am';
+      }
+      
     }
-
+    console.log(this.request);
 
   }
 
@@ -201,10 +179,9 @@ export class BookHolidayComponent implements OnInit {
 
   setDaysFromDate(): void {
     if (this.request.toDate.isSameOrAfter(this.request.fromDate)) {
-      this.request.days = (this.request.toDate.diff(this.request.fromDate, 'days') + 1).toString();
+      this.request.days = (this.request.toDate.diff(this.request.fromDate, 'days') + 2).toString();
     }
     this.defaultDateAndDays();
-    console.log(this.request);
   }
 
   defaultDateAndDays(): void {
