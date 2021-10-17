@@ -1,5 +1,6 @@
 .border {
     border: 5px solid black;
+    padding: 3%;
 }
 
 .form-title {
@@ -9,10 +10,7 @@
     background-color: #0f2a3d;;
 }
 
-.request-form {
-    margin-top: 5%;
-}
-
 :host ::ng-deep nx-tab-header {
     justify-content: flex-start!important;
-  }
+}
+  

@@ -37,6 +37,7 @@ export class BookHolidayComponent implements OnInit {
   fromChecked : boolean = false;
   toChecked : boolean = false;
   halfPick : string = 'A';
+  filterValue : string = '';
 
   enabledFrom = [
     { value: 'A', circleText: 'AM', selected: false },
@@ -190,6 +191,14 @@ export class BookHolidayComponent implements OnInit {
       this.request.days = '1';
     }
 
+  }
+
+  filterList() : void {
+    console.log("user filtered for: " + this.filterValue);
+  }
+
+  submitRequest(): void {
+      console.log("user submitted request with values: ", this.request);
   }
 
 }

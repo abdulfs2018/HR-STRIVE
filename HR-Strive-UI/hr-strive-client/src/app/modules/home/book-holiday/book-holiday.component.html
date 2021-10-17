@@ -1,4 +1,3 @@
-
   <div nxLayout="grid">
 
     <div nxRow class="docs-grid-colored-row">
@@ -74,11 +73,7 @@
           </div>
         </div>
         
-        <div nxRow>
-          <div nxCol="12,6">
-            <button nxButton type="submit">Submit</button>
-          </div>
-        </div>
+        
 
       </div>
       <div nxCol="6" class="docs-grid-colored-col">
@@ -97,7 +92,27 @@
         <nx-icon name="plus" size="s" aria-hidden="true"></nx-icon>
         My Holidays
       </ng-template>
+      <div nxRow>
+        <div nxCol="7">
+          
+        </div>
+        <div nxCol="3">
+          <nx-formfield nxLabel="Search Requests">
+            <input nxInput [(ngModel)]="filterValue" (ngModelChange)="filterList()">
+            <nx-icon name="password-show-o" size="s"></nx-icon>
+          </nx-formfield>
+
+        </div>
+        <div nxCol="2">
+          <button nxButton="secondary small" type="button" (click)='submitRequest()'>Submit New Request</button>
+        </div>
+      </div>
       <nx-swipebar label="Scroll to see more">
+
+        
+        
+         
+        
         <table nxTable>
           <thead>
             <tr nxTableRow>
